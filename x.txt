@@ -1,0 +1,35 @@
+<?php
+    
+    @include 'connection.php';
+    session_start();
+    $admin_id = $_SESSION['admin_name'];
+
+    if (!isset($admin_id)){
+        header('location:login.php');
+    }
+
+    if (isset($_POST['logout'])){
+        session_destroy();
+        header('location:login.php');
+    }
+
+?>
+ /*-------- <i class="fas fa-list" id="menu-btn"><i>------*/
+
+ header.php===================
+  <div class="icons">
+                <i class="fas fa-user" id="user-btn"></i>
+                <?php
+                    $select_wishlist = mysqli_query($conn,"SELECT * FROM `wishlist` WHERE user_id='$user_id'") or die('query failed');
+                    $wishlist_num_rows = mysqli_num_rows($select_wishlist);
+                ?>
+                <a href="wishlist.php"><i class="fas fa-heart"></i><sup><?php echo $wishlist_num_rows; ?></sup></a>
+                <?php
+                    $select_cart = mysqli_query($conn,"SELECT * FROM `cart` WHERE user_id='$user_id'") or die('query failed');
+                    $cart_num_rows = mysqli_num_rows($select_wishlist);
+                ?>
+                <a href="cart.php"><i class="fas fa-shopping-cart"></i><sup><?php echo $cart_num_rows; ?></sup></a>
+
+              
+            </div>   
+            Warning: Undefined array key "number" in D:\xampp\htdocs\Aalok2_project\contact.php on line 16
